@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "applied",
+    "slug": "applied",
+    "version": "0.1.0",
+    "scheme": "applied",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "backgroundColor": "#0d0d0d",
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.applied.learn"
+    },
+    "android": {
+      "package": "com.applied.learn",
+      "adaptiveIcon": {
+        "backgroundColor": "#0d0d0d",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
