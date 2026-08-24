@@ -4,7 +4,16 @@ An applied-first learning app for maths and science. The differentiator is not g
 
 This repository is currently **Phase 0**: two de-risking spikes that exist to kill or confirm the architecture before the platform gets built. Spike 0a is implemented. Spike 0b is specified and not started.
 
-Full architecture: `architecture/technical-architecture-v0.2.md` in the Claude project.
+**The architecture lives at [`docs/architecture/technical-architecture-v0.2.md`](docs/architecture/technical-architecture-v0.2.md).** It is the canonical copy — the reference this codebase is written against — and everything else in `docs/` hangs off it:
+
+| File | What it is |
+|---|---|
+| [`docs/architecture/technical-architecture-v0.2.md`](docs/architecture/technical-architecture-v0.2.md) | **The architecture.** Pedagogy layer, content engine, paper-free solver, client, backend, risks, decision log. |
+| [`docs/roadmap.md`](docs/roadmap.md) | Solo/part-time delivery plan. Supersedes the phase durations in §10 of the architecture. |
+| [`docs/phase-0a.md`](docs/phase-0a.md) | Feel-spike gate criteria and the record to fill in. |
+| [`docs/phase-0b.md`](docs/phase-0b.md) | Solver-spike brief. Not started. |
+
+`CLAUDE.md` at the repo root points any agent session at the same document, so it is picked up without being asked for.
 
 ---
 
