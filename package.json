@@ -1,7 +1,7 @@
 {
   "name": "applied",
   "version": "1.0.0",
-  "main": "expo-router/entry",
+  "main": "index.js",
   "dependencies": {
     "@shopify/react-native-skia": "^2.6.2",
     "expo": "~57.0.15",
@@ -38,7 +38,8 @@
     "prebuild": "expo prebuild --clean",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "bench": "node --experimental-strip-types --no-warnings bench/step-budget.ts"
+    "bench": "node --experimental-strip-types --no-warnings bench/step-budget.ts",
+    "postinstall": "node scripts/copy-canvaskit.mjs"
   },
   "private": true
 }

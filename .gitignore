@@ -42,3 +42,6 @@ yarn-error.*
 
 # scratch from scaffold transfer — safe to delete
 _to_delete/
+
+# canvaskit wasm — copied from node_modules by scripts/copy-canvaskit.mjs
+public/canvaskit.wasm
