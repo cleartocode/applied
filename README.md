@@ -1,5 +1,12 @@
 # applied
 
+[![Phase 0a — gate not run](https://img.shields.io/badge/phase-0a%20%E2%80%94%20gate%20not%20run-d95926?style=flat-square)](docs/phase-0a.md)
+[![Expo SDK 57](https://img.shields.io/badge/Expo%20SDK-57-1a1a19?style=flat-square&logo=expo&logoColor=white)](https://docs.expo.dev/)
+[![React Native 0.86](https://img.shields.io/badge/React%20Native-0.86-3987e5?style=flat-square&logo=react&logoColor=white)](https://reactnative.dev/)
+[![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-256abf?style=flat-square&logo=typescript&logoColor=white)](tsconfig.json)
+[![Runs on iOS, Android and Web](https://img.shields.io/badge/runs%20on-iOS%20%C2%B7%20Android%20%C2%B7%20Web-199e70?style=flat-square)](#running-it)
+[![MIT licence](https://img.shields.io/badge/licence-MIT-898781?style=flat-square)](LICENSE)
+
 An applied-first learning app for maths and science. The differentiator is not gamification — it is **sequence**: the real-world application comes first, the theory second, and the assessment returns to the real world in a *different* domain.
 
 This repository is currently **Phase 0**: two de-risking spikes that exist to kill or confirm the architecture before the platform gets built. Spike 0a is implemented. Spike 0b is specified and not started.
@@ -76,6 +83,8 @@ Record `step p50`, `step p95` and `fps` from the HUD. If p95 is over 4 ms, run `
 ## Repository map
 
 ```
+index.js                      entry point — loads Skia before the app graph (web)
+
 app/                          expo-router routes
   _layout.tsx                 stack, dark theme, gesture root
   index.tsx                   spike menu
@@ -91,6 +100,8 @@ src/
       useModelLoop.ts         the frame loop. The invariant lives here.
       perf.ts                 ring buffers, percentiles, budget warning
       useSharedMirror.ts      UI-thread value -> React state, rate limited
+      loadSkia.ts             native: no-op, Skia is linked in
+      loadSkia.web.ts         web: awaits the CanvasKit WASM module
     views/
       LossSurface.tsx         Skia: field rasterised once, path animated
       FitPanel.tsx            Skia: same state, second encoding
@@ -101,6 +112,7 @@ src/
   ui/Button.tsx
 
 bench/step-budget.ts          headless step benchmark
+scripts/copy-canvaskit.mjs    postinstall: canvaskit.wasm -> public/ (gitignored)
 docs/                         phase gates and the solo delivery plan
 ```
 
