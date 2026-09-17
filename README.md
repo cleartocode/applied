@@ -118,12 +118,11 @@ docs/                         phase gates and the solo delivery plan
 
 ## The invariants
 
-Four rules the code is built around. Breaking any of them re-opens a problem this phase exists to close.
+The code is built around a short list of rules, each of which exists because breaking it re-opens a problem this phase was built to close: the interaction loop never touches the JS thread, expensive work is precomputed at mount, the struggle beat writes the structured data the consolidation beat reads, colour follows the entity rather than its rank, models stay pure enough to run in bare Node, and widget code keeps running on the web.
 
-1. **Nothing visual crosses the JS thread.** Bindings are shared values; the model step is a worklet; Skia reads shared values per frame. JS does loading, narration, capture, analytics — all rate-limited. The moment a Skia view depends on React state, the interaction loop has a JS thread in it.
-2. **Expensive work is precomputed at mount.** The loss field is 65k cells rasterised once into a Skia image. A model that cannot separate mount-time work from per-frame work will blow the budget, and that constraint belongs in the widget schema.
-3. **The struggle beat writes structured data.** Beat 3 reads it. Anything else is a demo followed by an unrelated lecture.
-4. **Colour follows the entity, never its rank.** Orange is the learner's current model in every panel; aqua is the best possible fit. The palette in `tokens.ts` was validated for colour-blind separation, lightness band, chroma floor, and contrast against the dark surface — re-run that validation before adding a fourth series rather than picking a hue that looks nice.
+**They are written out in full, with the reasoning, in [`CLAUDE.md`](CLAUDE.md).** They live in one place on purpose — the same reason the repository map above is not repeated there. A list maintained in two files is a list that will disagree with itself, and these are exactly the rules you cannot afford to read a stale version of.
+
+For the argument underneath them, see [§6 of the architecture](docs/architecture/technical-architecture-v0.2.md).
 
 ## What is deliberately missing
 
