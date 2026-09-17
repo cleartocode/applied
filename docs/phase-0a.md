@@ -11,14 +11,31 @@ Fill this in after testing on real devices and commit it. A gate you did not wri
 
 ### 1. Perf — does the model step hold its budget?
 
+**Devices under test.** Confirm the middle columns off the device itself rather than off a spec sheet — `adb shell getprop ro.product.model`, `adb shell getprop ro.build.version.release`, and `adb shell dumpsys display | grep -i 'fps\|refresh'`.
+
+| Ref | Device | Chipset / GPU | Panel | Android | Role |
+|---|---|---|---|---|---|
+| **A** | Samsung Galaxy A06 (confirm 4G vs 5G) | Helio G85 / Mali-G52 MC2 | 6.7″ 720×1600, 60 Hz | | **Floor.** Deliberately below the Track B audience. |
+| B | _(mid Android — not yet acquired)_ | | | | Representative of the real Track B floor. |
+| C | _(your iPhone)_ | | | | Sanity check. The easy case. |
+
+The A06 5G is a different SoC (Dimensity 6300) with a different panel. Record which one was actually tested — the numbers are not transferable between them.
+
 | Device | Build | step p50 | step p95 | fps | Verdict |
 |---|---|---|---|---|---|
-| _(oldest Android you'll support)_ | release | | | | |
-| _(mid Android)_ | release | | | | |
-| _(your iPhone)_ | release | | | | |
-| Simulator | debug | | | | *ignore — proves nothing* |
+| A — Galaxy A06 | release | | | | |
+| B — mid Android | release | | | | |
+| C — iPhone | release | | | | |
+| Simulator / emulator | debug | | | | *ignore — proves nothing* |
 
-**Pass:** step p95 ≤ 4 ms and fps ≥ 50 on the oldest device, in a release build, with the descent running.
+**Pass:** step p95 ≤ 4 ms and fps ≥ 50 on **device A**, in a release build, with the descent running — and running for at least two minutes, not ten seconds. The A06 is plastic-bodied with 4 GB of RAM; it will thermally throttle, and the throttled steady state is the real number.
+
+**Release builds only on device A.** A debug build here — dev-mode React, Reanimated's development assertions, an unminified bundle streamed over Metro — will make a Helio G85 feel broken and will tell you nothing about the architecture. `npx expo run:android --variant release`.
+
+**How to read a failure on A.** `CLAUDE.md` scopes the product to Track B, tech professionals, who are not on an A06. Device A is therefore a *stricter* test than the product needs, which cuts both ways:
+
+- **A passes** → the redirect question is closed with real headroom to spare. B and C become formalities.
+- **A fails** → this is not on its own a redirect trigger. Get device B before concluding anything about React Native, because "fails on a device below my floor" is a scoping note, not an architecture failure. Work the plumbing checklist below first.
 
 Headless baseline for comparison — `npm run bench`, this machine:
 
